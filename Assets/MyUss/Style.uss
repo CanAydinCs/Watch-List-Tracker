@@ -1,0 +1,7 @@
+.text {
+    font-size: 25px;
+    height: auto;
+    width: auto;
+    -unity-text-align: middle-center;
+    white-space: normal;
+}
