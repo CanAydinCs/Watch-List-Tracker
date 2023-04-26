@@ -1,12 +1,10 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/MyUss/Style.uss?fileID=7433441132597879392&amp;guid=b79990cb4c8d0eb41803277badbc7421&amp;type=3#Style" />
-    <ui:VisualElement name="bg" style="flex-grow: 1; align-items: center; justify-content: center; background-color: rgb(149, 149, 149);">
-        <ui:VisualElement name="part" style="height: 7%; width: 100%; flex-direction: row; align-items: center; justify-content: center;">
-            <ui:Label text="Name" display-tooltip-when-elided="true" name="name" class="text" />
-            <ui:Label text="Last Season" display-tooltip-when-elided="true" name="LastSeason" class="text" />
-            <ui:Label text="Last Episode" display-tooltip-when-elided="true" name="LastEpisode" class="text" />
-            <ui:Label text="Last&#10;Watched&#10;Name" display-tooltip-when-elided="true" name="lastName" class="text" />
-            <ui:Label text="Finished" display-tooltip-when-elided="true" name="finished" class="text" />
+    <ui:VisualElement name="background" style="flex-grow: 1; align-items: center; justify-content: space-between; background-color: rgb(149, 149, 149);" />
+    <ui:VisualElement style="align-items: center; justify-content: center; flex-grow: 1; position: absolute; height: 100%; width: 100%;">
+        <ui:VisualElement style="position: absolute; bottom: 0; height: 7%; width: 55%; background-color: rgb(63, 63, 63); align-items: center; justify-content: center; flex-direction: row; flex-grow: 1;">
+            <ui:Button text="Back" display-tooltip-when-elided="true" name="btnBack" style="font-size: 29px; margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px;" />
+            <ui:Button text="Next" display-tooltip-when-elided="true" name="btnNext" style="font-size: 29px; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
