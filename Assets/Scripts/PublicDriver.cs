@@ -21,24 +21,6 @@ public class PublicDriver : MonoBehaviour
     [Header("Adder")]
     public Button btnMod, btnBack, btnDelete;
 
-    private void Awake()
-    {
-        //General
-        root = GetComponent<UIDocument>().rootVisualElement;
-        listBg = root.Q<VisualElement>("listBg");
-        addBg = root.Q<VisualElement>("addBg");
-
-        //Lister
-        btnBack = root.Q<Button>("btnPre");
-        btnAdd = root.Q<Button>("btnAdd");
-        btnNext = root.Q<Button>("btnNext");
-
-        //Adder
-        btnMod = root.Q<Button>("btnMod");
-        btnBack = root.Q<Button>("btnBack");
-        btnDelete = root.Q<Button>("btnDelete");
-    }
-
     //// JSON verisini PlayerData sýnýfýna dönüþtürme
     //PlayerData playerData = JsonUtility.FromJson<PlayerData>(json);
 
@@ -47,14 +29,41 @@ public class PublicDriver : MonoBehaviour
 
     private void Start()
     {
+        //General
+        root = GetComponent<UIDocument>().rootVisualElement;
+        listBg = root.Q<VisualElement>("listBg");
+        addBg = root.Q<VisualElement>("addBg");
+
+        //Lister
+        btnPre = root.Q<Button>("btnPre");
+        btnAdd = root.Q<Button>("btnAdd");
+        btnNext = root.Q<Button>("btnNext");
+
+        //Adder
+        btnMod = root.Q<Button>("btnMod");
+        btnBack = root.Q<Button>("btnBack");
+        btnDelete = root.Q<Button>("btnDelete");
+
+        //others
         string showJson = PlayerPrefs.GetString(STORAGE_NAME, "");
-        myShows = JsonUtility.FromJson<List<MShows>>(showJson);
 
-        lastID = myShows[myShows.Count - 1].id;
+        var myObject = JsonUtility.FromJson<List<MShows>>(showJson);
+        myShows = myObject != null ? myObject : new List<MShows>();
 
-        foreach (MShows show in myShows)
+        if(myShows.Count == 0)
         {
-            mySets.Add(MakeSet(show));
+            lastID = 1;
+
+            mySets = new List<VisualElement>();
+        }
+        else
+        {
+            lastID = myShows[myShows.Count - 1].id;
+
+            foreach (MShows show in myShows)
+            {
+                mySets.Add(MakeSet(show));
+            }
         }
     }
 
@@ -62,6 +71,7 @@ public class PublicDriver : MonoBehaviour
     {
         myShows.Add(show);
         Save();
+        lastID++;
     }
 
     public void Delete(MShows show)

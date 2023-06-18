@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 using UnityEngine;
@@ -25,6 +26,11 @@ public class Lister : MonoBehaviour
 
     private void Start()
     {
+        Invoke("StarterFunction", 2f);
+    }
+
+    private void StarterFunction()
+    {
         driver = GetComponent<PublicDriver>();
 
         listBg = driver.listBg;
@@ -44,6 +50,12 @@ public class Lister : MonoBehaviour
         }
 
         titlePrefab = driver.CreateTitle();
+
+        if (pages == null)
+        {
+            pages = new List<VisualElement[]>();
+            return;
+        }
 
         PageButtons(0);
     }
@@ -72,7 +84,8 @@ public class Lister : MonoBehaviour
     }
     private void BtnAdd_clicked()
     {
-        GetComponent<Adder>().baseShow = null;
+        Adder adder = GetComponent<Adder>();
+        adder.baseShow = null;
 
         listBg.style.visibility = Visibility.Hidden;
         addBg.style.visibility = Visibility.Visible;

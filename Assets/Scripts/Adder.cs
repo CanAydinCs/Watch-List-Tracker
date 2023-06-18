@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -16,6 +17,11 @@ public class Adder : MonoBehaviour
 
     private void Start()
     {
+        Invoke("StarterFunction", 2);
+    }
+
+    private void StarterFunction()
+    {
         driver = GetComponent<PublicDriver>();
 
         listBg = driver.listBg;
@@ -25,17 +31,23 @@ public class Adder : MonoBehaviour
         btnBack = driver.btnBack;
         btnDelete = driver.btnDelete;
 
-        btnMod.text = baseShow == null ? "Add" : "Edit";
-        btnDelete.style.visibility = baseShow == null ? Visibility.Hidden : Visibility.Visible;
-
         btnMod.clicked += BtnMod_clicked;
         btnBack.clicked += BtnBack_clicked;
         btnDelete.clicked += BtnDelete_clicked;
     }
 
+    public void Switched()
+    {
+        btnMod.text = baseShow == null ? "Add" : "Edit";
+        btnDelete.style.visibility = baseShow == null ? Visibility.Hidden : Visibility.Visible;
+    }
+
     private void BtnMod_clicked()
     {
-        throw new System.NotImplementedException();
+        if(baseShow == null)
+        {
+            baseShow = new MShows(driver.lastID,"isim deneme", new List<MSeasons>(), false);
+        }
     }
 
     private void BtnBack_clicked()
@@ -46,6 +58,6 @@ public class Adder : MonoBehaviour
 
     private void BtnDelete_clicked()
     {
-        throw new System.NotImplementedException();
+        driver.Delete(baseShow);
     }
 }

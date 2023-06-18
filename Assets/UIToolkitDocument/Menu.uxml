@@ -1,24 +1,26 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/MyUss/Style.uss?fileID=7433441132597879392&amp;guid=b79990cb4c8d0eb41803277badbc7421&amp;type=3#Style" />
-    <ui:VisualElement name="listBg" style="flex-grow: 1; align-items: center; justify-content: center; background-color: rgb(149, 149, 149); position: absolute; width: 100%; height: 100%; display: flex;">
-        <ui:VisualElement name="btnBg" style="align-items: center; justify-content: center; flex-grow: 1; position: absolute; height: 100%; width: 100%;">
-            <ui:VisualElement style="position: absolute; bottom: 0; height: 7%; width: 55%; background-color: rgb(63, 63, 63); align-items: center; justify-content: center; flex-direction: row; flex-grow: 1;">
-                <ui:Button text="Back" display-tooltip-when-elided="true" name="btnPre" style="font-size: 29px; margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px;" />
-                <ui:Button text="Add" display-tooltip-when-elided="true" name="btnAdd" style="font-size: 29px; margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px;" />
-                <ui:Button text="Next" display-tooltip-when-elided="true" name="btnNext" style="font-size: 29px; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px;" />
+    <ui:VisualElement name="root" style="flex-grow: 1;">
+        <ui:VisualElement name="listBg" style="flex-grow: 1; align-items: center; justify-content: center; background-color: rgb(149, 149, 149); position: absolute; width: 100%; height: 100%; display: flex;">
+            <ui:VisualElement name="btnBg" style="align-items: center; justify-content: center; flex-grow: 1; position: absolute; height: 100%; width: 100%;">
+                <ui:VisualElement style="position: absolute; bottom: 0; height: 7%; width: 55%; background-color: rgb(63, 63, 63); align-items: center; justify-content: center; flex-direction: row; flex-grow: 1;">
+                    <ui:Button text="Back" display-tooltip-when-elided="true" name="btnPre" style="font-size: 29px; margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px;" />
+                    <ui:Button text="Add" display-tooltip-when-elided="true" name="btnAdd" style="font-size: 29px; margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px;" />
+                    <ui:Button text="Next" display-tooltip-when-elided="true" name="btnNext" style="font-size: 29px; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px;" />
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-    </ui:VisualElement>
-    <ui:VisualElement name="addBg" style="height: 100%; width: 100%; flex-grow: 1; position: absolute; color: rgb(87, 87, 87); background-color: rgb(91, 91, 91); align-items: center; justify-content: center; display: flex; visibility: hidden;">
-        <ui:VisualElement style="height: 60px; width: 448px; flex-direction: column;">
-            <ui:TextField picking-mode="Ignore" label="Name:" text="Enter The Name Of Show " name="txtName" style="color: rgb(0, 0, 0); font-size: 23px;" />
-            <ui:TextField picking-mode="Ignore" label="Name:" text="Enter The Name Of Show " name="txtName" style="color: rgb(0, 0, 0); font-size: 23px;" />
-        </ui:VisualElement>
-        <ui:VisualElement name="btnBg" style="align-items: center; justify-content: center; flex-grow: 1; position: absolute; height: 100%; width: 100%;">
-            <ui:VisualElement style="position: absolute; bottom: 0; height: 7%; width: 55%; background-color: rgb(63, 63, 63); align-items: center; justify-content: center; flex-direction: row; flex-grow: 1;">
-                <ui:Button text="Delete" display-tooltip-when-elided="true" name="btnDelete" style="font-size: 29px; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px;" />
-                <ui:Button text="Back" display-tooltip-when-elided="true" name="btnBack" style="font-size: 29px; margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px;" />
-                <ui:Button text="Modify" display-tooltip-when-elided="true" name="btnMod" style="font-size: 29px; margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px;" />
+        <ui:VisualElement name="addBg" style="height: 100%; width: 100%; flex-grow: 1; position: absolute; color: rgb(87, 87, 87); background-color: rgb(91, 91, 91); align-items: center; justify-content: center; display: flex; visibility: hidden; overflow: visible;">
+            <ui:VisualElement style="height: 60px; width: 448px; flex-direction: column;">
+                <ui:TextField picking-mode="Ignore" label="Name:" text="Enter The Name Of Show " name="txtName" style="color: rgb(0, 0, 0); font-size: 23px;" />
+                <ui:TextField picking-mode="Ignore" label="Name:" text="Enter The Name Of Show " name="txtName" style="color: rgb(0, 0, 0); font-size: 23px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="btnBg" style="align-items: center; justify-content: center; flex-grow: 1; position: absolute; height: 100%; width: 100%;">
+                <ui:VisualElement style="position: absolute; bottom: 0; height: 7%; width: 55%; background-color: rgb(63, 63, 63); align-items: center; justify-content: center; flex-direction: row; flex-grow: 1;">
+                    <ui:Button text="Delete" display-tooltip-when-elided="true" name="btnDelete" style="font-size: 29px; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px;" />
+                    <ui:Button text="Back" display-tooltip-when-elided="true" name="btnBack" style="font-size: 29px; margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px;" />
+                    <ui:Button text="Modify" display-tooltip-when-elided="true" name="btnMod" style="font-size: 29px; margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px;" />
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

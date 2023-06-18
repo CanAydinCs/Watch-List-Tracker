@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 513012318}
   - component: {fileID: 513012320}
   - component: {fileID: 513012321}
+  - component: {fileID: 513012322}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -198,6 +199,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36dd3625f5ed7084391379ec324231ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseShow:
+    id: 0
+    name: 
+    seasons: []
+    isFinished: 0
+--- !u!114 &513012322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513012317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a08164985dc84fb4eb6099e71a08a362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myShows: []
+  STORAGE_NAME: storage
+  lastID: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
