@@ -26,11 +26,6 @@ public class Lister : MonoBehaviour
 
     private void Start()
     {
-        Invoke("StarterFunction", 2f);
-    }
-
-    private void StarterFunction()
-    {
         driver = GetComponent<PublicDriver>();
 
         listBg = driver.listBg;

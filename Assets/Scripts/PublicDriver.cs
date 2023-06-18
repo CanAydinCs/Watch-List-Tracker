@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
 
 public class PublicDriver : MonoBehaviour
 {
@@ -14,11 +16,13 @@ public class PublicDriver : MonoBehaviour
 
     [Space]
     [Header("Lister")]
+    [SerializeField] private Lister lister;
     public Button btnPre, btnAdd, btnNext;
     public List<VisualElement> mySets;
 
     [Space]
     [Header("Adder")]
+    [SerializeField] private Adder adder;
     public Button btnMod, btnBack, btnDelete;
 
     //// JSON verisini PlayerData sýnýfýna dönüþtürme
@@ -35,14 +39,20 @@ public class PublicDriver : MonoBehaviour
         addBg = root.Q<VisualElement>("addBg");
 
         //Lister
+        lister = GetComponent<Lister>();
         btnPre = root.Q<Button>("btnPre");
         btnAdd = root.Q<Button>("btnAdd");
         btnNext = root.Q<Button>("btnNext");
 
         //Adder
+        adder = GetComponent<Adder>();
         btnMod = root.Q<Button>("btnMod");
         btnBack = root.Q<Button>("btnBack");
         btnDelete = root.Q<Button>("btnDelete");
+
+        btnMod.clicked += BtnMod_clicked;
+        btnBack.clicked += BtnBack_clicked;
+        btnDelete.clicked += BtnDelete_clicked;
 
         //others
         string showJson = PlayerPrefs.GetString(STORAGE_NAME, "");
@@ -55,23 +65,49 @@ public class PublicDriver : MonoBehaviour
             lastID = 1;
 
             mySets = new List<VisualElement>();
-        }
-        else
-        {
-            lastID = myShows[myShows.Count - 1].id;
 
-            foreach (MShows show in myShows)
-            {
-                mySets.Add(MakeSet(show));
-            }
+            return;
         }
+
+        lastID = myShows[myShows.Count - 1].id;
+
+        foreach (MShows show in myShows)
+        {
+            mySets.Add(MakeSet(show));
+        }
+    }
+
+    private void BtnMod_clicked()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    private void BtnBack_clicked()
+    {
+        STLister();
+    }
+
+    private void BtnDelete_clicked()
+    {
+        Delete(adder.baseShow);
     }
 
     public void Add(MShows show)
     {
-        myShows.Add(show);
+        //eðer nesne yeni ise id default olarak 0 döner
+        if (show.id == 0)
+        {
+            show.id = lastID;
+            lastID++;
+            myShows.Add(show);
+        }
+        else
+        {
+            MShows main = myShows.FirstOrDefault(x => x.id == show.id);
+            main = show;
+        }
+
         Save();
-        lastID++;
     }
 
     public void Delete(MShows show)
@@ -84,6 +120,25 @@ public class PublicDriver : MonoBehaviour
     {
         string showJson = JsonUtility.ToJson(myShows);
         PlayerPrefs.SetString(STORAGE_NAME, showJson);
+    }
+
+    public void STAddSeason(int id)
+    {
+        MShows baseShow = myShows.FirstOrDefault(x => x.id == id);
+
+        btnMod.text = baseShow == null ? "Add" : "Edit";
+        btnDelete.style.visibility = baseShow == null ? Visibility.Hidden : Visibility.Visible;
+
+        adder.baseShow = baseShow;
+
+        listBg.style.visibility = Visibility.Hidden;
+        addBg.style.visibility = Visibility.Visible;
+    }
+
+    public void STLister()
+    {
+        addBg.style.visibility = Visibility.Hidden;
+        listBg.style.visibility = Visibility.Visible;
     }
 
     private VisualElement MakeSet(MShows _show)
@@ -163,5 +218,5 @@ public class PublicDriver : MonoBehaviour
         print("need to implement");
     }
 
-    public VisualElement CreateTitle() => MakeSet(new MShows(31, "Name", new List<MSeasons> { new MSeasons("Season", new List<string> { "Last Episode" }, false) }, true));
+    public VisualElement CreateTitle() => MakeSet(new MShows(0, "Name", new List<MSeasons> { new MSeasons("Season", new List<string> { "Last Episode" }, false) }, true));
 }
