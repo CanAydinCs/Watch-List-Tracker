@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.U2D.Path;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEngine.GraphicsBuffer;
@@ -31,7 +32,7 @@ public class PublicDriver : MonoBehaviour
     //// PlayerData nesnesini JSON formatýna dönüþtürme
     //string newJson = JsonUtility.ToJson(playerData);
 
-    private void Start()
+    private void Awake()
     {
         //General
         root = GetComponent<UIDocument>().rootVisualElement;
@@ -79,7 +80,13 @@ public class PublicDriver : MonoBehaviour
 
     private void BtnMod_clicked()
     {
-        throw new System.NotImplementedException();
+        if (adder.baseShow == null)
+        {
+            adder.baseShow = new MShows(lastID, "isim deneme" + lastID, new List<MSeasons>(), false);
+        }
+
+        Add(adder.baseShow);
+        adder.baseShow = null;
     }
 
     private void BtnBack_clicked()
@@ -187,7 +194,7 @@ public class PublicDriver : MonoBehaviour
         Color color = new Color(0f, 0f, 0f, 0f);
         lblId.style.color = color;
 
-        lblId.text = _id.ToString();
+        lblId.text = _id.ToString(); 
 
         button.Add(lblId);
 

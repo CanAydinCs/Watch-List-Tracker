@@ -79,11 +79,7 @@ public class Lister : MonoBehaviour
     }
     private void BtnAdd_clicked()
     {
-        Adder adder = GetComponent<Adder>();
-        adder.baseShow = null;
-
-        listBg.style.visibility = Visibility.Hidden;
-        addBg.style.visibility = Visibility.Visible;
+        driver.STAddSeason(-1);
     }
 
     private void BtnNext_clicked()
